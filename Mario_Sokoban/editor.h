@@ -1,5 +1,6 @@
 //
 //  editor.h
+//  Prototypes definition for editor
 //  Mario_Sokoban
 //
 //  Created by Romain GUICHERD on 25/01/2020.

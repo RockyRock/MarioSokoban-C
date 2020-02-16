@@ -1,5 +1,6 @@
 //
 //  editor.c
+//  Editor function to create new maps
 //  Mario_Sokoban
 //
 //  Created by Romain GUICHERD on 25/01/2020.
@@ -29,6 +30,7 @@ void editor(SDL_Window* window){
     int edit = 1, leftClick = 0, rightClick = 0;
     int currEl = WALL, i = 0, j = 0;
     int x = 0, y = 0;
+    int player = 0;
     int map[NB_BLOCKS_WIDTH][NB_BLOCKS_HEIGHT] = {0};
     
     // Generate pointer to window surface
@@ -56,9 +58,22 @@ void editor(SDL_Window* window){
                 edit = 0;
                 break;
             case SDL_MOUSEBUTTONDOWN:
+                // Check if there is already a Mario on the map
+                player = 0;
+                for (i = 0; i < NB_BLOCKS_WIDTH; i++){
+                    for (j = 0; j < NB_BLOCKS_HEIGHT; j++){
+                        if (map[i][j] == MARIO){
+                            player = 1;
+                            i = NB_BLOCKS_WIDTH;
+                            j = NB_BLOCKS_HEIGHT;
+                        }
+                    }
+                }
                 if (event.button.button == SDL_BUTTON_LEFT){
-                    map[event.button.x / SIZE_BLOCK][event.button.y / SIZE_BLOCK] = currEl;
-                    leftClick = 1;
+                    if (currEl != MARIO || !player){
+                        map[event.button.x / SIZE_BLOCK][event.button.y / SIZE_BLOCK] = currEl;
+                        leftClick = 1;
+                    }
                 }
                 else if (event.button.button == SDL_BUTTON_RIGHT){
                     map[event.button.x / SIZE_BLOCK][event.button.y / SIZE_BLOCK] = VOID;
@@ -72,8 +87,9 @@ void editor(SDL_Window* window){
                 else if (event.button.button == SDL_BUTTON_RIGHT){
                     rightClick = 0;
                 }
+                break;
             case SDL_MOUSEMOTION:
-                if (leftClick){
+                if (leftClick && currEl != MARIO){
                     map[event.button.x / SIZE_BLOCK][event.button.y / SIZE_BLOCK] = currEl;
                 }
                 else if (rightClick){
@@ -110,7 +126,7 @@ void editor(SDL_Window* window){
                 break;
         }
         
-        // Erase screen with blue background
+        // Erase screen with light blue background
         SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 219, 252, 255));
         
         // Blit element on map
@@ -143,7 +159,7 @@ void editor(SDL_Window* window){
         position.x = x / SIZE_BLOCK*SIZE_BLOCK;
         position.y = y / SIZE_BLOCK*SIZE_BLOCK;
         
-        // Blit current element with half alpha transparency
+        // Blit current selected element with 128 alpha transparency
         switch (currEl){
             case WALL:
                 SDL_SetSurfaceBlendMode(wall, SDL_BLENDMODE_BLEND);

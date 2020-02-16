@@ -19,7 +19,7 @@
 void game(SDL_Window* window){
 
     // Variable initialization
-    SDL_Surface *mario[4] = {NULL}; // 4 surfaces for 4 directions for mario
+    SDL_Surface *mario[4] = {NULL}; // 4 surfaces for 4 Mario directions
     SDL_Surface* wall = NULL;
     SDL_Surface* crate = NULL;
     SDL_Surface* crateOK = NULL;
@@ -59,6 +59,8 @@ void game(SDL_Window* window){
                 positionPlayer.x = i;
                 positionPlayer.y = j;
                 map[i][j] = VOID;
+                i = NB_BLOCKS_WIDTH;
+                j = NB_BLOCKS_HEIGHT;
             }
         }
     }

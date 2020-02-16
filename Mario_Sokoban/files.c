@@ -1,5 +1,6 @@
 //
 //  files.c
+//  File management to save and load game files
 //  Mario_Sokoban
 //
 //  Created by Romain GUICHERD on 25/01/2020.

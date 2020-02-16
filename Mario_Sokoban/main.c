@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
         SDL_WINDOWPOS_UNDEFINED,           // initial y position
         WIDTH_WINDOW,                      // width in pixels
         HEIGHT_WINDOW,                     // height in pixels
-        SDL_WINDOW_OPENGL                  // flags openGL
+        0//SDL_WINDOW_OPENGL                  // flags openGL
     );
 
     // Check that the window was successfully created
@@ -47,9 +47,6 @@ int main(int argc, char *argv[]) {
         printf("Could not create window: %s\n", SDL_GetError());
         exit(EXIT_FAILURE);
     }
-
-    // This makes our buffer swap syncronized with the monitor's vertical refresh
-    SDL_GL_SetSwapInterval(1);
 
     // Set window icon and load menu image
     SDL_SetWindowIcon(window, IMG_Load("sprites_mario_sokoban/caisse.jpg"));
@@ -74,7 +71,7 @@ int main(int argc, char *argv[]) {
                     case SDLK_1:        // Start the game
                         game(window);
                         break;
-                    case SDLK_2:        // Lauch level editor
+                    case SDLK_2:        // Launch level editor
                         editor(window);
                         break;
                 }
@@ -82,14 +79,14 @@ int main(int argc, char *argv[]) {
         }
         
         // Fill SDL window screen with RGB color and blit menu
-        SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 255, 255, 255));
+        SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0, 0, 0));
         SDL_BlitSurface(menu, NULL, screen, &positionMenu);
         
         // Update SDL window
         SDL_UpdateWindowSurface(window);
     }
     
-    // Free rectangle and destroy the window
+    // Free menu and destroy the window
     SDL_FreeSurface(menu);
     SDL_DestroyWindow(window);
 
