@@ -138,7 +138,9 @@ void game(SDL_Window* window){
         SDL_BlitSurface(marioCurr, NULL, screen, &position);
         
         // Update window
+        if (play){
         SDL_UpdateWindowSurface(window);
+        }
     }
     
     // Free loaded surfaces

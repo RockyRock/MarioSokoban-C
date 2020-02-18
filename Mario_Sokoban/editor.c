@@ -194,7 +194,9 @@ void editor(SDL_Window* window){
         }
         
         // Update window
+        if (edit){
         SDL_UpdateWindowSurface(window);
+        }
     }
     
     // Free loaded surface
