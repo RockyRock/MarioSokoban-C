@@ -4,7 +4,23 @@ This repository contains a Mario sokoban game coded in C from the tutorial provi
 
 ## Game
 
-The main goal of this game is to position all the crate on the objectives using Mario. The objectives are represented by green dots, a crate will turn red once placed on an objective. Mario can only push one crate at a time and is controlled via the keyboard arrows. Pressing escape will return to the game menu.
+The main goal of this game is to position all the crates on the objectives using Mario. The objectives are represented by green dots, such that,
+
+![Objective](/Mario_Sokoban/sprites_mario_sokoban/objectif.png)
+
+A crate is represented by the following element,
+
+![Crate](/Mario_Sokoban/sprites_mario_sokoban/caisse.jpg)
+
+A crate will turn red once placed on an objective such that,
+
+![CrateOK](/Mario_Sokoban/sprites_mario_sokoban/caisse_ok.jpg)
+
+The map is limited by walls represented by
+
+![Wall](/Mario_Sokoban/sprites_mario_sokoban/mur.jpg)
+
+Mario can only push one crate at a time and is controlled via the keyboard arrows. Pressing escape will return to the game menu.
 
 ## Editor
 
